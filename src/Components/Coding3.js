@@ -9,7 +9,8 @@ export class Coding3 extends Component {
         super(props);
         this.state = {
             list_data: '',
-            videoId: ''
+            videoId: '',
+            resSearch: ''
         }
     }
 
@@ -22,22 +23,27 @@ export class Coding3 extends Component {
         await this.setState({ list_data: DATA })
     }
 
-    getVideoId = (data) => {
-        this.setState({
+    getVideoId = async (data) => {
+        await this.setState({
             videoId: data
         })
+    }
+
+    getResultSearch = async (dataSearch) => {
+        await this.setState({ resSearch: dataSearch })
+          
     }
 
     render() {
         return (
             <div className="frameBody">
                 <div align="center">
-                    <SearchComponent />
+                    <SearchComponent item={this.state.list_data} callBackSearch={this.getResultSearch.bind(this)} />
                 </div>
 
                 <div className="frameMainList">
                     <div className="frameMain">
-                        <MainViewComponent videoId={this.state.videoId} />
+                        <MainViewComponent videoId={this.state.videoId} resSearch={this.state.resSearch}/>
                     </div>
                     <div className="frameList">
                         <ListViewComponent item={this.state.list_data} callBackVideoId={this.getVideoId.bind(this)} />
@@ -56,7 +62,27 @@ const DATA = [
     },
     {
         id: 2,
-        name: 'Nhạc không lời tập trung học tập',
+        name: 'Nhạc không lời tập trung học tập',
         videoId: '4P0R9dUJ370',
-    }
+    },
+    {
+        id: 3,
+        name: 'Cho tui xin một vé đi tuổi thơ!',
+        videoId: 'I0y45gN36Vk',
+    },
+    {
+        id: 4,
+        name: 'Cho tui xin một vé đi tuổi thơ!',
+        videoId: 'I0y45gN36Vk',
+    },
+    {
+        id: 5,
+        name: 'Nhạc không lời tập trung học tập',
+        videoId: '4P0R9dUJ370',
+    },
+    {
+        id: 6,
+        name: 'Cho tui xin một vé đi tuổi thơ!',
+        videoId: 'I0y45gN36Vk',
+    },
 ]

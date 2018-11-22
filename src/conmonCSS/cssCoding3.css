@@ -50,6 +50,7 @@ button.frameButton:hover{
 }
 .frameContentList{
     height: 500px;
+    overflow-y: auto;
 }
 .frameName{
     margin-left: 8px;

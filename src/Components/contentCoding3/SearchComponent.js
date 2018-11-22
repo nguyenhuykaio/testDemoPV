@@ -6,7 +6,7 @@ export class SearchComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            valueSearch: ''
+            valueSearch: '',
         }
     }
 
@@ -14,8 +14,16 @@ export class SearchComponent extends Component {
         this.setState({ valueSearch: event.target.value });
     }
 
-    handleSubmitSearch = () => {
-        console.log("aa");
+    handleSubmitSearch = async (value) => {
+        const { item, callBackSearch } = await this.props;
+        if (value != "") {
+            let res = item.filter(x => x.name.toString().includes(value.toString()))
+            callBackSearch(res);
+        }
+        else {
+            alert("Not Blank!")
+        }
+
 
     }
 
@@ -30,11 +38,11 @@ export class SearchComponent extends Component {
                     value={this.state.valueSearch}
                     onChange={this.handleChangeSearch.bind(this)} />
 
-                <button 
-                className="frameButton"
-                onClick={() => this.handleSubmitSearch(this.state.valueSearch)}
-                > 
-                Search </button>
+                <button
+                    className="frameButton"
+                    onClick={() => this.handleSubmitSearch(this.state.valueSearch)}
+                >
+                    Search </button>
             </div>
         )
     }

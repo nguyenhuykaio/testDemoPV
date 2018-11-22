@@ -16,6 +16,10 @@ export class MainViewComponent extends Component {
         }
     };
 
+    onPlay(event) {
+        event.target.pauseVideo();
+    }
+
 
     render() {
         return (
@@ -28,7 +32,25 @@ export class MainViewComponent extends Component {
                             opts={this.opts}
                             className="video"
                         /> :
-                        <p>No video select</p>
+                        ""
+                }
+                {
+                    this.props.resSearch ?
+
+                        this.props.resSearch.map(item =>
+                            <div key={item.id}>
+                                <YouTube
+                                    videoId={item.videoId}
+                                    opts={this.opts}
+                                    onPlay={this.onPlay}
+                                    className="video"
+                                />
+                                <p className="frameName">{item.name}</p>
+                            </div>
+                        )
+                        :
+
+                        <p>No video</p>
                 }
 
             </div>
